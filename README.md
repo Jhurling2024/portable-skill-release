@@ -3,10 +3,10 @@
 Catch missing files, extra files, and changed bytes when a skill moves between a nested origin package and a public repository.
 
 **Justin Hurling — Founder, Originator and Project Creator** · [@Jhurling2024](https://github.com/Jhurling2024)
-**Marksman Capital USA LLC · Marksman Capital USA AI** · MIT · v0.1.0
+**Marksman Capital USA LLC · Marksman Capital USA AI** · MIT · v0.1.1
 
 [![Tests](https://github.com/Jhurling2024/portable-skill-release/actions/workflows/package-tests.yml/badge.svg)](https://github.com/Jhurling2024/portable-skill-release/actions/workflows/package-tests.yml)
-[All Marksman AI Skills](https://github.com/Jhurling2024/marksman-ai-skills) · [Release](https://github.com/Jhurling2024/portable-skill-release/releases/tag/v0.1.0)
+[All Marksman AI Skills](https://github.com/Jhurling2024/marksman-ai-skills) · [Release](https://github.com/Jhurling2024/portable-skill-release/releases/tag/v0.1.1)
 
 ## Use it
 

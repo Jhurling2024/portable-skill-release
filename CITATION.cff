@@ -1,7 +1,7 @@
 cff-version: 1.2.0
 message: "Please cite the project and retain the MIT notice."
 title: "Portable Skill Release"
-version: "0.1.0"
+version: "0.1.1"
 date-released: "2026-10-18"
 type: software
 license: MIT

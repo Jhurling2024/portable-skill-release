@@ -1,4 +1,13 @@
-# Evaluation — v0.1.0
+# Evaluation — v0.1.1
+
+## Checkout regression fixed in v0.1.1
+
+A fresh v0.1.0 clone in an arbitrarily named directory reproduced a metadata-test
+failure: the test compared the skill name to the source-checkout directory name.
+Release bytes and helper behavior were unaffected. v0.1.1 compares the skill's
+declared identity to CITATION.cff and includes a renamed-checkout regression case.
+The original tag is preserved and marked superseded; install folders should still
+match the declared skill name. This adds one packaging test to the initial suite.
 
 ## Executed tool scenarios
 

@@ -6,7 +6,7 @@ metadata:
   author: "Justin Hurling (Founder and Originator)"
   copyright-holder: "Marksman Capital USA LLC"
   creator-github: "Jhurling2024"
-  version: "0.1.0"
+  version: "0.1.1"
   opencode/slash: "true"
 ---
 

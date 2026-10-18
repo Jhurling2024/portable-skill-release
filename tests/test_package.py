@@ -3,6 +3,7 @@ import hashlib
 import re
 from pathlib import Path
 import unittest
+import tempfile
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -27,8 +28,11 @@ class PackageTests(unittest.TestCase):
     def test_metadata_and_credit(self):
         text = (ROOT / "SKILL.md").read_text(encoding="utf-8")
         self.assertTrue(text.startswith("---\n"))
-        self.assertIn("name: " + ROOT.name + "\n", text)
-        self.assertIn('version: "0.1.0"', text)
+        citation = (ROOT / "CITATION.cff").read_text(encoding="utf-8")
+        repo = re.search(r'(?m)^repository-code: "https://github.com/Jhurling2024/([^"/]+)"$', citation)
+        self.assertIsNotNone(repo)
+        self.assertIn("name: " + repo[1] + "\n", text)
+        self.assertRegex(text, r'(?m)^  version: "[0-9]+\.[0-9]+\.[0-9]+"$')
         self.assertIn("license: MIT", text)
         for name in ("SKILL.md", "AUTHORS.md", "README.md", "CITATION.cff", "LICENSE"):
             value = (ROOT / name).read_text(encoding="utf-8")
@@ -42,8 +46,26 @@ class PackageTests(unittest.TestCase):
             self.assertTrue((ROOT / rel).is_file(), rel)
 
     def test_version_record(self):
-        for name in ("CITATION.cff", "CHANGELOG.md", "README.md"):
-            self.assertIn("0.1.0", (ROOT / name).read_text(encoding="utf-8"))
+        text = (ROOT / "SKILL.md").read_text(encoding="utf-8")
+        version = re.search(r'(?m)^  version: "([0-9]+\.[0-9]+\.[0-9]+)"$', text)[1]
+        self.assertIn(f'version: "{version}"', (ROOT / "CITATION.cff").read_text())
+        self.assertIn(f"## [{version}]", (ROOT / "CHANGELOG.md").read_text())
+        self.assertIn("v" + version, (ROOT / "README.md").read_text())
+
+
+    def test_metadata_in_arbitrarily_named_checkout(self):
+        global ROOT
+        original = ROOT
+        with tempfile.TemporaryDirectory() as temporary:
+            checkout = Path(temporary) / "arbitrary-checkout-name"
+            checkout.mkdir()
+            for name in ("SKILL.md", "CITATION.cff", "AUTHORS.md", "README.md", "LICENSE"):
+                (checkout / name).write_bytes((original / name).read_bytes())
+            ROOT = checkout
+            try:
+                self.test_metadata_and_credit()
+            finally:
+                ROOT = original
 
 
 if __name__ == "__main__": unittest.main()
