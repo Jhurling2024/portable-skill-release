@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "Please cite the project and retain the MIT notice."
+title: "Portable Skill Release"
+version: "0.1.0"
+date-released: "2026-10-18"
+type: software
+license: MIT
+authors:
+  - family-names: Hurling
+    given-names: Justin
+    affiliation: "Founder, Originator and Project Creator; Marksman Capital USA LLC"
+repository-code: "https://github.com/Jhurling2024/portable-skill-release"
+keywords:
+  - agent-skills
+  - marksman-capital-usa
+  - reproducibility
